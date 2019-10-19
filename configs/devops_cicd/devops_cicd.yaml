@@ -1,0 +1,15 @@
+project:
+  name: "devops_cicd"
+  description: "description=Generic purpose pipeline for Devops"
+
+repositories:
+  - name: "docker_jenkins"
+    url: "https://github.com/pjamenaja/docker_jenkins.git"
+    credential:
+
+jenkins_jobs:
+  - name: "jenkins_docker_image_build"
+    type: "build" #deploy|service    
+    branches_include: "master dev/* trunk"
+    trigger_period: "1min"
+    repository: "docker_jenkins"
