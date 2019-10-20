@@ -33,21 +33,3 @@ jobs:
               periodic(1)
           }
       }
-
-  - script: >
-      multibranchPipelineJob("jenkins_docker_image_deploy") 
-      {
-          displayName("jenkins_docker_image_deploy")
-          branchSources {
-              git {
-                  id('jenkins_docker_image_deploy')
-                  remote('https://github.com/pjamenaja/docker_jenkins.git')
-                  credentialsId('')
-                  includes('trunk')
-                  excludes('release/*')
-              }
-          }
-          triggers {
-              periodic(2)
-          }
-      }

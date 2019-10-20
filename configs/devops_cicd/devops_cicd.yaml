@@ -14,3 +14,4 @@ jenkins_jobs:
     trigger_period: "1" #minute
     repository: "docker_jenkins"
 
+

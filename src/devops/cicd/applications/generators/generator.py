@@ -9,7 +9,7 @@ class Generator:
         for proj in self.projects:
             path = self.basepath + proj + '/'
             inname = proj + '.yaml'
-            jenkins_outname = 'jenkins_' + inname
+            jenkins_outname = 'jenkins/jenkins_' + inname
 
             infile = path + inname
             out_jenkins = path + jenkins_outname
