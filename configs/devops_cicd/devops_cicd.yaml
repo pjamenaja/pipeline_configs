@@ -5,11 +5,17 @@ project:
 repositories:
   - name: "docker_jenkins"
     url: "https://github.com/pjamenaja/docker_jenkins.git"
-    credential:
+    credential: ""
 
 jenkins_jobs:
   - name: "jenkins_docker_image_build"
     type: "build" #build|deploy|activation
     branches_include: "master dev/* trunk"
-    trigger_period: "1min"
+    trigger_period: "1" #minute
+    repository: "docker_jenkins"
+
+  - name: "jenkins_docker_image_deploy"
+    type: "deploy"
+    branches_include: "trunk"
+    trigger_period: "2" #minute
     repository: "docker_jenkins"

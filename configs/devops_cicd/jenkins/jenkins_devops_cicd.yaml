@@ -1,0 +1,53 @@
+
+jenkins:
+  systemMessage: "devops_cicd"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  maven:
+    installations:
+    - name: "Maven 3"
+      properties:
+      - installSource:
+          installers:
+            - maven:
+                id: "3.5.4"      
+jobs:                  
+
+  - script: >
+      multibranchPipelineJob("jenkins_docker_image_build") 
+      {
+          displayName("jenkins_docker_image_build")
+          branchSources {
+              git {
+                  id('jenkins_docker_image_build')
+                  remote('https://github.com/pjamenaja/docker_jenkins.git')
+                  credentialsId('')
+                  includes('master dev/* trunk')
+                  excludes('release/*')
+              }
+          }
+          triggers {
+              periodic(1)
+          }
+      }
+
+  - script: >
+      multibranchPipelineJob("jenkins_docker_image_deploy") 
+      {
+          displayName("jenkins_docker_image_deploy")
+          branchSources {
+              git {
+                  id('jenkins_docker_image_deploy')
+                  remote('https://github.com/pjamenaja/docker_jenkins.git')
+                  credentialsId('')
+                  includes('trunk')
+                  excludes('release/*')
+              }
+          }
+          triggers {
+              periodic(2)
+          }
+      }
