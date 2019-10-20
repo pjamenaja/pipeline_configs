@@ -1,6 +1,6 @@
 project:
   name: "devops_cicd"
-  description: "description=Generic purpose pipeline for Devops"
+  description: "Generic purposes pipeline for Devops"
 
 repositories:
   - name: "docker_jenkins"
@@ -9,7 +9,7 @@ repositories:
 
 jenkins_jobs:
   - name: "jenkins_docker_image_build"
-    type: "build" #deploy|service    
+    type: "build" #build|deploy|activation
     branches_include: "master dev/* trunk"
     trigger_period: "1min"
     repository: "docker_jenkins"
